@@ -11,6 +11,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 public class AincradKDLogger extends javax.swing.JFrame {
     private long lastTime;
     private final ArrayList<Event> events = new ArrayList<>();
@@ -29,6 +30,31 @@ public class AincradKDLogger extends javax.swing.JFrame {
         });
         t.setDaemon(true);
         t.start();
+        File versionFile = VersionManager.downloadFile("https://raw.githubusercontent.com/ThizThizzyDizzy/Aincrad-KD-Logger/master/versions.txt", new File("versions.txt"));
+        try{
+            if(versionFile!=null&&versionFile.exists()){
+                try(BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(versionFile)))){
+                    String line;
+                    String latestVersion = null;
+                    while((line = reader.readLine())!=null){
+                        if(line.isBlank())continue;
+                        if(!VersionManager.previousVersions.contains(line)&&!VersionManager.version.equals(line))System.out.println("Unrecognized version: "+line+"!");
+                        latestVersion = line;
+                    }
+                    if(VersionManager.version.equals(latestVersion))System.out.print("UP TO DATE");
+                    else if(VersionManager.previousVersions.contains(latestVersion))System.out.print("Latest version is outdated! ARE YOU IN THE FUTURE?!?");
+                    else{
+                        System.out.print("Out of date!");
+                        if(JOptionPane.showOptionDialog(this, "An new version of Aincrad K/D Logger is available!\nCurrent Version: "+VersionManager.version+"\nLatest Version: "+latestVersion+"\nPlease download the new version from\nhttps://github.com/ThizThizzyDizzy/Aincrad-KD-Logger/releases/latest", "Aincrad K/D Logger: Update Available", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"Open GitHub Releases", "Ignore"}, "Open GitHub Releases")==0){
+                            Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler https://github.com/ThizThizzyDizzy/Aincrad-KD-Logger/releases/latest");
+                        }
+                    }
+                    System.out.println(" (Current: "+VersionManager.version+", Latest: "+latestVersion);
+                }
+            }else JOptionPane.showMessageDialog(this, "Unable to check version!\nCurrent Version: "+VersionManager.version, "Version Check Failed", JOptionPane.WARNING_MESSAGE);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(this, "Caught error during version check\n"+ex.getClass().getName()+": "+ex.getMessage(), "Version Check Failed", JOptionPane.WARNING_MESSAGE);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
