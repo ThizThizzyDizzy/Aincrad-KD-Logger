@@ -59,6 +59,7 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="boxAutoScan">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Auto Refresh (seconds)"/>
           </Properties>
         </Component>

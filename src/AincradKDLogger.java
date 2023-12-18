@@ -84,6 +84,7 @@ public class AincradKDLogger extends javax.swing.JFrame {
 
         jPanel1.setLayout(new java.awt.GridLayout());
 
+        boxAutoScan.setSelected(true);
         boxAutoScan.setText("Auto Refresh (seconds)");
         jPanel1.add(boxAutoScan);
 
