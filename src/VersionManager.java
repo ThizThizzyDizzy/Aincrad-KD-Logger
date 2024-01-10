@@ -12,15 +12,14 @@ public class VersionManager{
     static{
         addVersion("0.1.0");
         addVersion("0.1.1");
+        addVersion("0.1.2");
     }
     private static void addVersion(String v){
         if(version!=null)previousVersions.add(version);
         version = v;
     }
     public static File downloadFile(String link, File destinationFile){
-        if(destinationFile.exists()||link==null){
-            return destinationFile;
-        }
+        if(destinationFile.exists())destinationFile.delete();
         System.out.println("Downloading "+destinationFile.getName()+"...");
         if(destinationFile.getParentFile()!=null)destinationFile.getParentFile().mkdirs();
         try {
