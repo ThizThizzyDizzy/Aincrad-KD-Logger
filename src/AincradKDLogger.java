@@ -149,7 +149,7 @@ public class AincradKDLogger extends javax.swing.JFrame {
             str+="\nDeaths:";
             for(String s : deaths)str+="\n"+playerDeaths.get(s)+"x "+s;
         }
-        textAreaOutput.setText(str.trim());
+        textAreaOutput.setText(str.trim().replace("Player: Valmouse", "Val: Val"));
     }
     private void scan(){
         buttonScan.setEnabled(false);
