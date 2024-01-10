@@ -73,7 +73,7 @@ public class AincradKDLogger extends javax.swing.JFrame {
         buttonScan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Aincrad Kill/Death Logger");
+        setTitle("Aincrad Kill/Death Logger "+VersionManager.version);
 
         textAreaOutput.setEditable(false);
         textAreaOutput.setColumns(15);
@@ -82,7 +82,7 @@ public class AincradKDLogger extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel1.setLayout(new java.awt.GridLayout());
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
 
         boxAutoScan.setSelected(true);
         boxAutoScan.setText("Auto Refresh (seconds)");

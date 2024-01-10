@@ -11,6 +11,7 @@ public class VersionManager{
     public static ArrayList<String> previousVersions = new ArrayList<>();
     static{
         addVersion("0.1.0");
+        addVersion("0.1.1");
     }
     private static void addVersion(String v){
         if(version!=null)previousVersions.add(version);
